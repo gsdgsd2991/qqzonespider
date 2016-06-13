@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="starModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="QQData">
+          <Key>
+            <PropertyRef Name="dataIndex" />
+          </Key>
+          <Property Name="qqNum" Type="int" />
+          <Property Name="nickName" Type="nvarchar" MaxLength="50" />
+          <Property Name="publishTime" Type="datetime" />
+          <Property Name="text" Type="nvarchar(max)" />
+          <Property Name="dataIndex" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="qzonespider">
+          <Key>
+            <PropertyRef Name="qqnumber" />
+          </Key>
+          <Property Name="qqnumber" Type="int" Nullable="false" />
+          <Property Name="html" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="starModelStoreContainer">
+          <EntitySet Name="QQData" EntityType="Self.QQData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="qzonespider" EntityType="Self.qzonespider" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="starModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="QQData">
+          <Key>
+            <PropertyRef Name="dataIndex" />
+          </Key>
+          <Property Name="qqNum" Type="Int32" />
+          <Property Name="nickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="publishTime" Type="DateTime" Precision="3" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dataIndex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="qzonespider">
+          <Key>
+            <PropertyRef Name="qqnumber" />
+          </Key>
+          <Property Name="qqnumber" Type="Int32" Nullable="false" />
+          <Property Name="html" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="starEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="QQData" EntityType="Self.QQData" />
+          <EntitySet Name="qzonespider" EntityType="Self.qzonespider" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="starModelStoreContainer" CdmEntityContainer="starEntities">
+          <EntitySetMapping Name="QQData">
+            <EntityTypeMapping TypeName="starModel.QQData">
+              <MappingFragment StoreEntitySet="QQData">
+                <ScalarProperty Name="qqNum" ColumnName="qqNum" />
+                <ScalarProperty Name="nickName" ColumnName="nickName" />
+                <ScalarProperty Name="publishTime" ColumnName="publishTime" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="dataIndex" ColumnName="dataIndex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="qzonespider">
+            <EntityTypeMapping TypeName="starModel.qzonespider">
+              <MappingFragment StoreEntitySet="qzonespider">
+                <ScalarProperty Name="qqnumber" ColumnName="qqnumber" />
+                <ScalarProperty Name="html" ColumnName="html" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
