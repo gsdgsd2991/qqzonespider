@@ -16,35 +16,19 @@ using Winista.Text.HtmlParser.Filters;
 
 namespace qqzonespiderform
 {
-   // public partial class NativeMethods
-   // {
-        /// <summary>
-        /// 启动控制台
-        /// </summary>
-        /// <returns></returns>
-        //[System.Runtime.InteropServices.DllImport("kernel32.dll")]
-        //public static extern bool AllocConsole();
-        /// <summary>
-        /// 释放控制台
-        /// </summary>
-        /// <returns></returns>
-        //[System.Runtime.InteropServices.DllImport("kernel32.dll")]
-        //public static extern bool FreeConsole();
-   // }
     public partial class Form2 : Form
     {
         string realUrl1 = "http://ic2.s12.qzone.qq.com/cgi-bin/feeds/feeds_html_module?i_uin=";
         string realUrl2 = "&i_login_uin=1822683003&mode=4&previewV8=1&style=31&version=8&needDelOpr=true&transparence=true&hideExtend=false&showcount=5&MORE_FEEDS_CGI=http:%2F%2Fic2.s12.qzone.qq.com%2Fcgi-bin%2Ffeeds%2Ffeeds_html_act_all&refer=2&paramstring=os-win7|100";
         int seed = 1800000000;
-        HashSet<int> usedQQNums = new HashSet<int>();
+       
 
         CookieContainer cookieContainer = new CookieContainer(10);
 
         public Form2()
         {
             InitializeComponent();
-            //NativeMethods.AllocConsole();
-            // Console.WriteLine("控制台以启动");
+           
             webBrowser1.Navigate("http://m.qzone.com/");
             //webBrowser1.Navigating += (s, ev) =>
             //{
@@ -97,16 +81,9 @@ namespace qqzonespiderform
             {
 
                 var qqnum = 0;
-                do
-                {
-                    qqnum = (int)(rand.NextDouble() * 1000000000);//(j * 10000 + seed + (int)i);
-                } while (qqnum <= 10000000);
-                lock (usedQQNums)
-                {
-                    if (usedQQNums.Contains(qqnum))
-                        continue;
-                    usedQQNums.Add(qqnum);
-                }
+               
+               qqnum = (j * 10000 + seed + (int)i);
+                            
                 var realUrl = realUrl1 + qqnum + realUrl2;
                 var request = (HttpWebRequest)WebRequest.Create(realUrl);
                 
